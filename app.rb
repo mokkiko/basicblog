@@ -33,6 +33,10 @@ get '/new_post' do
 end
 post '/new_post' do
   @content = params[:content]
+  if @content.length <=0
+    @error = 'Type your text'
+    return erb :new_post
+  end
   erb "you tiped #{@content}"
 
 end
