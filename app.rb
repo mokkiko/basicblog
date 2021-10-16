@@ -25,7 +25,7 @@ end
 
 
 get '/' do
-	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
+	erb "Hello! "
 end
 
 get '/new_post' do
@@ -33,11 +33,17 @@ get '/new_post' do
 end
 post '/new_post' do
   @content = params[:content]
+
   if @content.length <=0
     @error = 'Type your text'
     return erb :new_post
   end
+
+  @db.execute 'insert into posts (content, create_date) values (?, datetime())', [@content]
   erb "you tiped #{@content}"
 
 end
 
+get '/posts_list' do
+  erb :posts_list
+end
