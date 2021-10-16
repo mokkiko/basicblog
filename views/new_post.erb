@@ -1,10 +1,11 @@
 <h1>Add new post</h1>
 
-<div class="form-floating">
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" rows="6"></textarea>
-</div>
-<br>
 
-<form>
+
+<form action="new_post" method="POST">
+    <div class="form-floating">
+      <textarea name="content" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" rows="6"></textarea>
+    </div>
+    <br>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
