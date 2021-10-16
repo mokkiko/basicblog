@@ -6,7 +6,7 @@ require 'sqlite3'
 
 def init_db
   @db = SQLite3::Database.new 'blog.db'
-  @db.results_as_hash
+  @db.results_as_hash = true
 end
 
 before do
@@ -31,6 +31,7 @@ end
 get '/new_post' do
   erb :new_post
 end
+
 post '/new_post' do
   @content = params[:content]
 
@@ -40,10 +41,11 @@ post '/new_post' do
   end
 
   @db.execute 'insert into posts (content, create_date) values (?, datetime())', [@content]
-  erb "you tiped #{@content}"
+  erb "you typed #{@content}"
 
 end
 
 get '/posts_list' do
+  @results = @db.execute 'select * FROM posts ORDER BY id DESC'
   erb :posts_list
 end
