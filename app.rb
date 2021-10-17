@@ -69,6 +69,18 @@ post '/articles/:art_id' do
   art_id = params[:art_id]
   comment_for_content = params[:comment_for_content]
   erb "you typed #{comment_for_content}"
-
+  @db.execute 'insert into Comments
+    (
+      comment_for_content,
+      create_date,
+      article_id
+    )
+      values
+    (
+      ?,
+      datetime(),
+      ?
+    )', [comment_for_content, art_id]
+  redirect to ('/articles/' + art_id)
 end
 
