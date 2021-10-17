@@ -21,6 +21,13 @@ configure do
       create_date DATE,
       content	TEXT
   )'
+  @db.execute 'CREATE TABLE if not exists Comments
+  (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      create_date DATE,
+      comment_for_content	TEXT,
+      article_id INTEGER
+  )'
 end
 
 
@@ -58,4 +65,10 @@ get '/articles/:art_id' do
 end
 
 
+post '/articles/:art_id' do
+  art_id = params[:art_id]
+  comment_for_content = params[:comment_for_content]
+  erb "you typed #{comment_for_content}"
+
+end
 

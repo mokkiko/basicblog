@@ -7,3 +7,11 @@ Added at <%= @row['create_date'] %>
 
 <hr />
 </p>
+<h3> -=COMMENTS=-</h3>
+<form action="/articles/<%= @row['id'] %>" method="POST">
+  <div class="form-floating">
+    <textarea name="comment_for_content" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" rows="3"></textarea>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
