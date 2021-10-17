@@ -61,7 +61,10 @@ get '/articles/:art_id' do
   art_id = params[:art_id]
   results = @db.execute 'select * from posts where id = ?', [art_id]
   @row = results[0]
+
+  @comments = @db.execute 'select * from Comments where article_id = ? order by id', [art_id]
   erb :articles
+
 end
 
 
