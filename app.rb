@@ -49,3 +49,13 @@ get '/posts_list' do
   @results = @db.execute 'select * FROM posts ORDER BY id DESC'
   erb :posts_list
 end
+
+get '/articles/:art_id' do
+  art_id = params[:art_id]
+  results = @db.execute 'select * from posts where id = ?', [art_id]
+  @row = results[0]
+  erb :articles
+end
+
+
+
