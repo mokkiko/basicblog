@@ -1,10 +1,17 @@
 <h1>last posts:</h1>
 <%  @results.each do |aaa| %>
    <p>
-     <%= aaa['content'] %>
-     <br />
-     <br />
+     <h4><%= aaa['content'] %></h4>
+
+
      Added at <%= aaa['create_date'] %>
-     <hr />
+     <br />
+     <a href="articles/<%= aaa['id'] %>">comments</a>
+
+  <hr />
    </p>
 <% end %>
+
+
+
+#  1:10
